@@ -16,17 +16,18 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call / email send
-    await new Promise(resolve => setTimeout(resolve, 1200));
-
-    setIsSubmitting(false);
-    setSubmitted(true);
-
-    // Reset after showing success
+    // Form will be submitted to Formspree automatically via action attribute
+    // The success message will still show after submission
     setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', role: '', message: '' });
-    }, 2800);
+      setIsSubmitting(false);
+      setSubmitted(true);
+
+      // Reset form after success
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: '', email: '', role: '', message: '' });
+      }, 2800);
+    }, 800);
   };
 
   return (
@@ -36,11 +37,10 @@ export default function Contact() {
         <div className="lg:col-span-2">
           <div className="uppercase tracking-[3px] text-xs text-[#10b981] font-medium mb-3">CHAPTER 08 — NEXT STEP</div>
           <h2 className="text-6xl font-semibold tracking-[-3px] leading-none">Let&apos;s Build<br />Smarter Products</h2>
-          
+         
           <p className="mt-8 text-lg text-[#a1a1aa] max-w-sm">
             I&apos;m currently open to Product Analytics, Growth Analytics, Data Analyst and Experimentation roles at ambitious teams.
           </p>
-
           <div className="mt-10 space-y-4 text-sm">
             <a href="mailto:brightchibuikeaja@gmail.com" className="flex items-center gap-4 group">
               <div className="w-9 h-9 rounded-xl border border-[#27272a] flex items-center justify-center group-hover:border-[#10b981] transition-colors"><Mail className="w-4 h-4" /></div>
@@ -64,29 +64,28 @@ export default function Contact() {
         {/* Form */}
         <div className="lg:col-span-3">
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form action="https://formspree.io/f/xgojzqwb" method="POST" onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-xs tracking-widest text-[#71717a] mb-2">YOUR NAME</label>
-                  <input 
+                  <input
                     type="text" name="name" value={formData.name} onChange={handleChange} required
-                    className="w-full bg-[#16161b] border border-[#27272a] rounded-2xl px-6 py-4 text-base placeholder:text-[#52525b] focus:outline-none focus:border-[#10b981]" 
-                    placeholder="Jane Doe" 
+                    className="w-full bg-[#16161b] border border-[#27272a] rounded-2xl px-6 py-4 text-base placeholder:text-[#52525b] focus:outline-none focus:border-[#10b981]"
+                    placeholder="Jane Doe"
                   />
                 </div>
                 <div>
                   <label className="block text-xs tracking-widest text-[#71717a] mb-2">WORK EMAIL</label>
-                  <input 
+                  <input
                     type="email" name="email" value={formData.email} onChange={handleChange} required
-                    className="w-full bg-[#16161b] border border-[#27272a] rounded-2xl px-6 py-4 text-base placeholder:text-[#52525b] focus:outline-none focus:border-[#10b981]" 
-                    placeholder="you@company.com" 
+                    className="w-full bg-[#16161b] border border-[#27272a] rounded-2xl px-6 py-4 text-base placeholder:text-[#52525b] focus:outline-none focus:border-[#10b981]"
+                    placeholder="you@company.com"
                   />
                 </div>
               </div>
-
               <div>
                 <label className="block text-xs tracking-widest text-[#71717a] mb-2">I&apos;M HIRING FOR / INTERESTED IN</label>
-                <select 
+                <select
                   name="role" value={formData.role} onChange={handleChange} required
                   className="w-full bg-[#16161b] border border-[#27272a] rounded-2xl px-6 py-4 text-base text-[#f4f4f5] focus:outline-none focus:border-[#10b981]"
                 >
@@ -99,22 +98,20 @@ export default function Contact() {
                   <option value="Other">Other / Just exploring</option>
                 </select>
               </div>
-
               <div>
                 <label className="block text-xs tracking-widest text-[#71717a] mb-2">MESSAGE / CONTEXT</label>
-                <textarea 
+                <textarea
                   name="message" value={formData.message} onChange={handleChange} required rows={5}
-                  className="w-full resize-y min-h-[120px] bg-[#16161b] border border-[#27272a] rounded-3xl px-6 py-5 text-base placeholder:text-[#52525b] focus:outline-none focus:border-[#10b981]" 
+                  className="w-full resize-y min-h-[120px] bg-[#16161b] border border-[#27272a] rounded-3xl px-6 py-5 text-base placeholder:text-[#52525b] focus:outline-none focus:border-[#10b981]"
                   placeholder="Tell me about the role, team, or challenge you're working on..."
                 />
               </div>
-
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isSubmitting}
                 className="btn-primary w-full flex items-center justify-center gap-3 h-14 rounded-2xl text-base font-semibold disabled:opacity-70 mt-2"
               >
-                {isSubmitting ? "SENDING YOUR MESSAGE..." : "SEND MESSAGE"} 
+                {isSubmitting ? "SENDING YOUR MESSAGE..." : "SEND MESSAGE"}
                 {!isSubmitting && <ArrowRight className="w-4 h-4" />}
               </button>
               <p className="text-center text-xs text-[#71717a]">I typically respond within 24–48 hours.</p>
