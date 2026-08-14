@@ -18,6 +18,21 @@ const experiences = [
     ]
   },
   {
+    role: "Senior Data Analyst",
+    company: "Carnation Consult",
+    period: "2021 — 2023",
+    location: "Nigeria",
+    highlights: [
+      { icon: BarChart3, text: "Analyzed business and operational data to identify trends, performance gaps, and opportunities for improvement across key business functions." },
+      { icon: Target, text: "Collected, cleaned, transformed, and validated datasets to ensure accuracy and reliability for analysis and reporting." },
+      { icon: Users, text: "Developed and maintained analytical reports and dashboards that gave stakeholders clear visibility into key performance indicators." },
+      { icon: BarChart3, text: "Conducted ad-hoc and recurring analyses to support strategic and operational decision-making." },
+      { icon: Target, text: "Translated complex datasets into clear, actionable insights and presented findings to management and other stakeholders." },
+      { icon: Users, text: "Monitored KPIs, investigated anomalies and performance trends, and collaborated with cross-functional teams to deliver data-driven solutions." },
+      { icon: BarChart3, text: "Automated repetitive reporting and data-processing tasks, improving efficiency and reducing manual effort while supporting business planning and resource allocation." },
+    ]
+  },
+  {
     role: "Junior Data Analyst",
     company: "Data Science Nigeria",
     period: "Jan 2020 — Aug 2022",
