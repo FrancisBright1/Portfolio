@@ -82,15 +82,31 @@ const projects: Project[] = [
       { label: "Technical Write-up", url: "#" },
       { label: "GitHub", url: "https://github.com/FrancisBright1" }
     ]
+  },
+  {
+    id: 4,
+    title: "JAMB Performance Analysis",
+    subtitle: "Exploratory Data Analysis of Nigerian Students' UTME Scores",
+    category: "EDA & Analytics",
+    image: "/project-jamb.jpg",
+    problem: "Understanding student performance patterns in the Joint Admissions and Matriculation Board (JAMB) examination is critical for education stakeholders in Nigeria. There was limited accessible, interactive insight into how scores vary across states, gender, and score bands — making it hard for policymakers, schools, and parents to identify gaps and opportunities.",
+    approach: "Conducted comprehensive Exploratory Data Analysis on JAMB UTME performance data. Cleaned and structured the dataset, engineered key metrics (pass rates, average scores, high-achiever proportions), and built an interactive Streamlit dashboard featuring score distributions, state-wise heatmaps, gender comparisons, and filtering capabilities for deeper exploration.",
+    impact: "Delivered a live, public-facing interactive dashboard that surfaces clear performance insights across Nigeria. Enables stakeholders to explore regional differences, gender gaps, and score range distributions in an accessible format — supporting data-informed discussions around education outcomes.",
+    tools: ["Python", "Pandas", "Streamlit", "EDA", "Data Visualization"],
+    metrics: ["Interactive Streamlit dashboard", "State-wise performance mapping", "Gender & score distribution analysis", "Publicly deployed analytics app"],
+    links: [
+      { label: "View Live Dashboard", url: "https://francisbright1-jamb-performance-analysis-jamb-app-bv9irx.streamlit.app/" },
+      { label: "GitHub", url: "https://github.com/FrancisBright1" }
+    ]
   }
 ];
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [filter, setFilter] = useState<'All' | 'Retention & ML' | 'Segmentation & BI' | 'Data Engineering'>('All');
+  const [filter, setFilter] = useState<'All' | 'Retention & ML' | 'Segmentation & BI' | 'Data Engineering' | 'EDA & Analytics'>('All');
 
-  const filteredProjects = filter === 'All' 
-    ? projects 
+  const filteredProjects = filter === 'All'
+    ? projects
     : projects.filter(p => p.category === filter);
 
   const openProject = (project: Project) => {
@@ -110,15 +126,15 @@ export default function Projects() {
           <div className="uppercase tracking-[3px] text-xs text-[#10b981] font-medium mb-3">CHAPTER 03 — SELECT WORK</div>
           <h2 className="text-5xl font-semibold tracking-[-2.5px]">Featured Projects</h2>
         </div>
-        
+       
         {/* Filter Tabs */}
         <div className="flex items-center gap-1 p-1 bg-[#16161b] rounded-2xl border border-[#27272a]">
-          {(['All', 'Retention & ML', 'Segmentation & BI', 'Data Engineering'] as const).map((cat) => (
+          {(['All', 'Retention & ML', 'Segmentation & BI', 'Data Engineering', 'EDA & Analytics'] as const).map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-5 py-2 text-sm rounded-[14px] transition-all font-medium ${filter === cat 
-                ? 'bg-[#10b981] text-[#0a0a0f] shadow' 
+              className={`px-5 py-2 text-sm rounded-[14px] transition-all font-medium ${filter === cat
+                ? 'bg-[#10b981] text-[#0a0a0f] shadow'
                 : 'text-[#a1a1aa] hover:text-white hover:bg-[#1f2937]'}`}
             >
               {cat}
@@ -129,14 +145,14 @@ export default function Projects() {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.map((project, index) => (
-          <div 
+          <div
             key={project.id}
             onClick={() => openProject(project)}
             className="project-card group card rounded-3xl overflow-hidden cursor-pointer flex flex-col"
           >
             <div className="relative h-56 overflow-hidden bg-[#111114]">
-              <img 
-                src={project.image} 
+              <img
+                src={project.image}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -171,7 +187,7 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8" onClick={closeProject}>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -274,14 +290,14 @@ export default function Projects() {
                     {selectedProject.links && (
                       <div className="pt-4 flex flex-col gap-3">
                         {selectedProject.links.map((link, i) => (
-                          <a 
+                          <a
                             key={i}
-                            href={link.url} 
-                            target="_blank" 
+                            href={link.url}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="btn-secondary flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-medium group"
                           >
-                            {link.label} 
+                            {link.label}
                             {link.label.includes('GitHub') ? <Github className="w-4 h-4" /> : <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition" />}
                           </a>
                         ))}
