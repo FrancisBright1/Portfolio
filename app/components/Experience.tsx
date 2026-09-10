@@ -4,16 +4,16 @@ import React from "react";
 
 const experiences = [
   {
-    role: "Lead Product & Growth Data Analyst",
+    role: "Lead Data Analyst",
     company: "Timi Tech Digital Consult",
     period: "Sept 2023 — Present",
     location: "Uyo, Nigeria",
     highlights: [
-      "Built and maintained funnel dashboards covering acquisition, activation, retention and churn so product and leadership had a weekly view of the same KPIs.",
-      "Designed A/B and multivariate tests on product features, used SciPy to check whether results were statistically meaningful, and wrote up what changed after launch.",
-      "Delivered Power BI and Tableau dashboards that teams could use without sending a new request for every chart.",
-      "Used SQL, Python and clustering methods to group users and flag engagement drop-off for retention work.",
-      "Ran SQL, Python and Power BI training sessions for analysts and business colleagues.",
+      "Build and maintain dashboards covering acquisition, activation, retention and other weekly KPIs for product and leadership.",
+      "Analyse product and campaign performance in SQL, Power BI and Python, then write a short recommendation the team can act on.",
+      "Support product tests by defining the success metric, checking the results, and summarising whether a change is worth keeping.",
+      "Group users by behaviour to show which segments engage, drop off or convert.",
+      "Train colleagues in SQL, Python and Power BI.",
     ],
   },
   {
@@ -22,11 +22,11 @@ const experiences = [
     period: "2021 — 2023",
     location: "Nigeria",
     highlights: [
-      "Analysed business and operations data to find performance gaps and questions worth acting on.",
+      "Analysed business and operations data to find performance gaps.",
       "Cleaned, transformed and checked datasets before they were used in reports.",
-      "Built recurring dashboards and ad-hoc analyses that gave stakeholders a clear view of KPIs.",
-      "Investigated unusual movements in metrics and worked with other teams on the follow-up.",
-      "Automated repeat reporting and data-prep tasks so less time was spent on manual refreshes.",
+      "Built recurring dashboards and ad-hoc analyses for KPI monitoring.",
+      "Investigated unusual movements in metrics and shared the findings with other teams.",
+      "Automated repeat reporting so less time was spent on manual refreshes.",
     ],
   },
   {
@@ -35,11 +35,11 @@ const experiences = [
     period: "Jan 2020 — Aug 2022",
     location: "Uyo, Nigeria",
     highlights: [
-      "Automated reporting workflows with Python and SQL so recurring extracts did not have to be rebuilt by hand.",
-      "Built Power BI dashboards for KPI monitoring across product and business metrics.",
-      "Ran correlation, regression and trend analysis on sales and operations data in SPSS and Python.",
-      "Maintained ETL workflows that fed later analysis and modelling work.",
-      "Wrote findings in language that product, sales and operations teams could use.",
+      "Supported reporting workflows with Python and SQL.",
+      "Built Power BI dashboards for KPI monitoring.",
+      "Ran trend, correlation and basic regression analysis on sales and operations data.",
+      "Helped prepare and check datasets used in later analysis.",
+      "Wrote findings in language that non-technical teammates could use.",
     ],
   },
 ];
@@ -51,7 +51,7 @@ export default function Experience() {
         <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Experience</p>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Work history</h2>
         <p className="mt-4 text-[#a1a1aa] text-sm sm:text-base">
-          Dates below are taken from the current CV. The Carnation Consult and Data Science Nigeria periods overlap as listed; they are shown here as they appear on the CV, not adjusted.
+          Carnation Consult (2021—2023) and Data Science Nigeria (2020—2022) overlap as listed on the current CV. Update these dates if LinkedIn or the signed CV is different.
         </p>
       </div>
       <div className="space-y-14">
