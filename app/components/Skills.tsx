@@ -19,9 +19,6 @@ export default function Skills() {
       <div className="max-w-2xl mb-12">
         <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Skills</p>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Tools I use</h2>
-        <p className="mt-4 text-[#a1a1aa] text-sm sm:text-base">
-          Listed by the work they support. No percentage scores — those numbers cannot be verified in an interview and do not help a hiring manager.
-        </p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {skillCategories.map((category) => (
