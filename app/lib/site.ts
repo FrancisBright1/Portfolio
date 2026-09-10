@@ -1,0 +1,15 @@
+export const SITE = {
+  name: "Francis Chibuike Bright",
+  shortName: "Francis Bright",
+  title: "Data Analyst",
+  specialty: "Business & Product Analytics",
+  email: "brightchibuikeaja@gmail.com",
+  phone: "+234 803 062 3059",
+  location: "Uyo, Nigeria",
+  linkedin: "https://linkedin.com/in/bright-francis",
+  linkedinLabel: "linkedin.com/in/bright-francis",
+  github: "https://github.com/FrancisBright1",
+  githubLabel: "github.com/FrancisBright1",
+  cvPath: "/Francis_Bright_CV.pdf",
+  url: "https://portfolio-eosin-beta-48.vercel.app",
+} as const;
