@@ -18,7 +18,7 @@ export default function Projects() {
           <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Projects</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Selected work</h2>
           <p className="mt-3 max-w-2xl text-[#a1a1aa] text-sm sm:text-base">
-            Each project is written so a hiring manager can see the question, the data, the method and the recommendation. Where a live app or repository exists, the link is included. Where it does not, that is stated.
+          
           </p>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" role="tablist" aria-label="Filter projects">
