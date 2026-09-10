@@ -1,82 +1,92 @@
-"use client";
-
-import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
-import { projects, type Project } from "../lib/projects";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { ExternalLink, Github, ArrowLeft } from "lucide-react";
+import { getProject, projects } from "../../lib/projects";
+import { SITE } from "../../lib/site";
+import SiteHeader from "../../components/SiteHeader";
+import Footer from "../../components/Footer";
 
-const filters = ["All", ...Array.from(new Set(projects.map((p) => p.category)))] as const;
-
-export default function Projects() {
-  const [filter, setFilter] = useState<(typeof filters)[number]>("All");
-  const visible = filter === "All" ? projects : projects.filter((p) => p.category === filter);
-
-  return (
-    <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-24 border-t border-[#27272a]">
-      <div className="flex flex-col gap-6 mb-10">
-        <div>
-          <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Projects</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Selected work</h2>
-        </div>
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" role="tablist" aria-label="Filter projects">
-          {filters.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              role="tab"
-              aria-selected={filter === cat}
-              className={`shrink-0 px-4 py-2 text-sm rounded-full border transition-colors ${
-                filter === cat ? "bg-[#10b981] text-[#0a0a0f] border-[#10b981]" : "border-[#27272a] text-[#a1a1aa] hover:text-white"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-6">
-        {visible.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-    </section>
-  );
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
-function ProjectCard({ project }: { project: Project }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) return { title: "Project not found" };
+  return {
+    title: project.title,
+    description: project.problem,
+    openGraph: {
+      title: `${project.title} | ${SITE.shortName}`,
+      description: project.problem,
+      images: [project.image],
+    },
+  };
+}
+
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) notFound();
+
+  const sections = [
+    { label: "Business problem", body: project.problem },
+    { label: "Data", body: project.data },
+    { label: "Approach", body: project.approach },
+    { label: "What I analysed", body: project.analysed },
+    { label: "Why it matters", body: project.implication },
+    { label: "Recommendation", body: project.recommendation },
+  ];
+
   return (
-    <article className="card rounded-3xl overflow-hidden flex flex-col">
-      <div className="relative h-48 sm:h-56 bg-[#111114]">
-        <img src={project.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#16161b] via-black/30 to-black/20" />
-        <span className="absolute top-4 left-4 px-3 py-1 text-xs font-medium bg-black/60 rounded-full border border-white/10">{project.category}</span>
-      </div>
-      <div className="p-6 sm:p-7 flex-1 flex flex-col gap-4">
-        <div>
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight">{project.title}</h3>
-          <p className="mt-2 text-[#a1a1aa] text-sm leading-relaxed">{project.problem}</p>
+    <div className="min-h-screen">
+      <SiteHeader />
+      <main id="main" className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        <Link href="/#projects" className="inline-flex items-center gap-2 text-sm text-[#a1a1aa] hover:text-white mb-8">
+          <ArrowLeft className="w-4 h-4" aria-hidden />
+          Back to projects
+        </Link>
+        <p className="text-xs uppercase tracking-[0.16em] text-[#10b981] mb-3">{project.category}</p>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">{project.title}</h1>
+        <p className="mt-3 text-lg text-[#a1a1aa]">{project.subtitle}</p>
+        <p className="mt-4 font-mono text-sm text-[#10b981]">{project.tools.join(" · ")}</p>
+        <div className="mt-8 rounded-2xl overflow-hidden border border-[#27272a]">
+          <img src={project.image} alt="" className="w-full" />
         </div>
-        <p className="text-xs font-mono text-[#10b981]">{project.tools.join(" · ")}</p>
-        <p className="text-sm text-[#d4d4d8] leading-relaxed">
-          <span className="text-[#71717a]">What I analysed. </span>
-          {project.analysed}
-        </p>
-        <p className="text-sm text-[#d4d4d8] leading-relaxed">
-          <span className="text-[#71717a]">Recommendation. </span>
-          {project.recommendation}
-        </p>
-        <div className="mt-auto pt-2 flex flex-wrap gap-2">
-          <Link href={`/projects/${project.slug}`} className="btn-primary inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm">
-            View case study <ArrowUpRight className="w-4 h-4" aria-hidden />
-          </Link>
-          {project.links.map((link) => (
-            <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm">
-              {link.label.toLowerCase().includes("github") ? <Github className="w-3.5 h-3.5" aria-hidden /> : <ExternalLink className="w-3.5 h-3.5" aria-hidden />}
-              {link.label}
-            </a>
+        <div className="mt-10 space-y-8">
+          {sections.map((section) => (
+            <section key={section.label}>
+              <h2 className="text-xs uppercase tracking-[0.16em] text-[#10b981] mb-2">{section.label}</h2>
+              <p className="text-[#d4d4d8] leading-relaxed">{section.body}</p>
+            </section>
           ))}
+          <section>
+            <h2 className="text-xs uppercase tracking-[0.16em] text-[#10b981] mb-3">Findings</h2>
+            <ul className="space-y-3">
+              {project.findings.map((item) => (
+                <li key={item} className="flex gap-3 text-[#d4d4d8] leading-relaxed">
+                  <span className="mt-2 w-1 h-1 rounded-full bg-[#10b981] shrink-0" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="flex flex-wrap gap-3 pt-2">
+            {project.links.map((link) => (
+              <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm">
+                {link.label.toLowerCase().includes("github") ? <Github className="w-4 h-4" aria-hidden /> : <ExternalLink className="w-4 h-4" aria-hidden />}
+                {link.label}
+              </a>
+            ))}
+            <a href={`mailto:${SITE.email}?subject=${encodeURIComponent("Question about " + project.title)}`} className="btn-primary inline-flex items-center px-5 py-2.5 rounded-full text-sm">
+              Ask about this project
+            </a>
+          </section>
         </div>
-      </div>
-    </article>
+      </main>
+      <Footer />
+    </div>
   );
 }
