@@ -9,6 +9,7 @@ import Education from "./components/Education";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Training from "./components/Training";
 
 export default function HomePage() {
   return (
