@@ -5,11 +5,11 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Impact from "./components/Impact";
+import Training from "./components/Training";
 import Education from "./components/Education";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Training from "./components/Training";
 
 export default function HomePage() {
   return (
@@ -22,6 +22,7 @@ export default function HomePage() {
         <Projects />
         <Skills />
         <Impact />
+        <Training />
         <Education />
         <Testimonials />
         <Contact />
