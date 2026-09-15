@@ -13,9 +13,9 @@ const certifications = [
 ];
 
 const development = [
-  "Statistical modelling with Python — self-directed",
-  "Tableau for product analytics — project-based learning",
-  "A/B testing and experiment design — self-directed",
+  "Statistical Modelling with Python",
+  "Tableau for Product Analytics",
+  "A/B Testing and Experiment Design",
 ];
 
 export default function Education() {
