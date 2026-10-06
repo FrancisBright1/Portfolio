@@ -19,7 +19,7 @@ const experiences = [
   {
     role: "Senior Data Analyst",
     company: "Carnation Consult",
-    period: "2021 — 2023",
+    period: "Jan 2021 — June 2023",
     location: "Nigeria",
     highlights: [
       "Analysed business and operations data to find performance gaps.",
