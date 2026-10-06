@@ -51,7 +51,7 @@ export default function Experience() {
         <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Experience</p>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Work history</h2>
         <p className="mt-4 text-[#a1a1aa] text-sm sm:text-base">
-          Carnation Consult (2021—2023) and Data Science Nigeria (2020—2022) overlap as listed on the current CV. Update these dates if LinkedIn or the signed CV is different.
+          
         </p>
       </div>
       <div className="space-y-14">
