@@ -7,6 +7,7 @@ import { SITE } from "../lib/site";
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", role: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorDetail, setErrorDetail] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,17 +16,31 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+    setErrorDetail("");
+
     try {
+      const body = new FormData();
+      body.append("name", formData.name);
+      body.append("email", formData.email);
+      body.append("role", formData.role);
+      body.append("message", formData.message);
+
       const res = await fetch("https://formspree.io/f/xgojzqwb", {
         method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: { Accept: "application/json" },
+        body,
       });
-      if (!res.ok) throw new Error("Request failed");
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => "");
+        throw new Error(`Formspree returned ${res.status}${text ? `: ${text.slice(0, 120)}` : ""}`);
+      }
+
       setStatus("sent");
       setFormData({ name: "", email: "", role: "", message: "" });
-    } catch {
+    } catch (err) {
       setStatus("error");
+      setErrorDetail(err instanceof Error ? err.message : "Unknown error");
     }
   };
 
@@ -61,6 +76,7 @@ export default function Contact() {
             </li>
           </ul>
         </div>
+
         <div className="lg:col-span-3">
           {status === "sent" ? (
             <div className="card rounded-3xl p-10 text-center">
@@ -97,7 +113,10 @@ export default function Contact() {
                 <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} className="w-full resize-y min-h-[120px] bg-[#16161b] border border-[#27272a] rounded-2xl px-5 py-4 text-base placeholder:text-[#52525b]" placeholder="Role, team, or the problem you want help with." />
               </div>
               {status === "error" && (
-                <p className="text-sm text-red-400" role="alert">The form did not send. Email me directly at {SITE.email}.</p>
+                <p className="text-sm text-red-400" role="alert">
+                  The form did not send. Email me directly at {SITE.email}.
+                  {errorDetail && <span className="block mt-1 text-xs text-red-300">{errorDetail}</span>}
+                </p>
               )}
               <button type="submit" disabled={status === "sending"} className="btn-primary w-full flex items-center justify-center gap-3 h-12 rounded-2xl text-base font-semibold disabled:opacity-70">
                 {status === "sending" ? "Sending…" : "Send message"}
