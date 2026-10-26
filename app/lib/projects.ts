@@ -31,27 +31,27 @@ export const projects: Project[] = [
   {
     slug: "predictive-retention-model",
     title: "Predictive Retention Model",
-    subtitle: "Predicting patient readmission risk from clinical and utilisation data",
+    subtitle: "Identifying diabetic patients at higher readmission risk",
     category: "Retention",
     image: "/project-retention.jpg",
     problem:
-      "Hospitals need an early signal of which diabetic patients are more likely to be readmitted. This project asks which available variables help flag that risk, and how a simple model can make the flag usable.",
+      "Hospitals need an early signal of which diabetic patients are more likely to be readmitted so a care team can review them before they leave. The question is which available variables help flag that risk, and whether a simple model can make the flag usable.",
     data:
-      "Patient-level records covering age, previous visits, glucose level, A1C result, number of medications and length of stay. The target variable is readmission (yes / no).",
+      "Patient-level records covering age, previous visits, glucose level, A1C result, number of medications and length of stay. The target variable is readmission (yes / no). Evaluation metrics from the build are not published because they were not recorded in the repository.",
     approach:
-      "Explored the data to see how clinical and utilisation features relate to readmission. Cleaned and prepared the variables, trained a logistic regression classifier in scikit-learn, and wrapped the model in a Streamlit app so a non-technical user can enter a patient profile and see a risk flag.",
+      "Explored the relationship between clinical and utilisation features and readmission. Cleaned and prepared the variables, trained a logistic regression classifier in scikit-learn, and wrapped the model in a Streamlit app so a non-technical user can enter a patient profile and see a risk flag. No baseline model comparison or cost analysis of false positives versus missed cases is included in the published version.",
     tools: ["Python", "Pandas", "Scikit-learn", "Streamlit"],
     analysed:
-      "Which patient attributes are associated with a higher chance of coming back into hospital, and how a simple, interpretable model can surface that risk.",
+      "Which patient attributes are associated with a higher chance of coming back into hospital, and how a simple, interpretable model can surface that risk for review.",
     findings: [
       "A logistic regression model can produce a usable yes/no readmission flag from a small set of clinical and utilisation features.",
       "The most useful inputs in this build were prior visits, length of stay, medication count and lab markers.",
       "Packaging the model in a simple app made the result usable by someone who does not write Python.",
     ],
     implication:
-      "A risk flag is only useful if it arrives early enough to act on, and if the people who need it can actually use it.",
+      "A risk flag is only useful if it arrives early enough for a care team to act, and if the people who need it can actually use it. Model quality metrics are not available here, so the published version shows the workflow rather than proven predictive performance.",
     recommendation:
-      "Treat the score as a triage tool, not an automatic decision. Review high-risk cases and decide what intervention is worth testing. Model evaluation metrics from this build are not published here because they were not recorded in the project repository.",
+      "Treat the score as a triage tool for review, not an automatic decision. A care team could use the flag to prioritise high-risk cases for follow-up. Any claim that the model reduced readmissions would require a controlled comparison that is not part of this project.",
     technical: [
       {
         language: "Python",
@@ -161,15 +161,15 @@ print(classification_report(y_test, model.predict(X_test)))`,
   {
     slug: "menu-engineering-dashboard",
     title: "Menu Engineering & Demand Optimization",
-    subtitle: "Restaurant revenue, orders and cuisine performance for Q1 2023",
+    subtitle: "Revenue, orders and meal-period patterns for Q1 2023",
     category: "Business Analytics",
     image: "/project-menu-engineering.jpg",
     problem:
-      "A multi-cuisine restaurant needed a clear view of which cuisines and meal periods drove revenue, orders and quantity sold so menu and staffing decisions could be based on actual demand rather than assumptions.",
+      "A multi-cuisine restaurant needed a clear view of which cuisines and meal periods drove revenue, orders and quantity sold so menu and staffing decisions could be based on observed demand rather than assumptions. Profitability cannot be assessed from revenue alone without ingredient costs and selling prices.",
     data:
-      "Order-level data covering cuisine type (Italian, Asian, Mexican), meal period (Dinner, Lunch, Afternoon, Late), quantity sold, order count and revenue. Key metrics shown: $145.27K revenue, 5K orders, 12K quantity, $27.05 average order value.",
+      "Order-level data covering cuisine type (Italian, Asian, Mexican), meal period (Dinner, Lunch, Afternoon, Late), quantity sold, order count and revenue. Key metrics shown: $145.27K revenue, 5K orders, 12K quantity, $27.05 average order value. An Unknown category appears and should be cleaned before decisions are finalised.",
     approach:
-      "Built a Power BI dashboard that surfaces revenue, order volume, quantity and average order value, then breaks performance by cuisine and meal period. Used visual comparisons to highlight where demand concentrates and where an Unknown category appears.",
+      "Built a Power BI dashboard that surfaces revenue, order volume, quantity and average order value, then breaks performance by cuisine and meal period. Used visual comparisons to show where demand concentrates. No item-level contribution or cost data is included in the published view.",
     tools: ["Power BI", "Data visualisation", "Business analysis"],
     analysed:
       "Which cuisines contribute most to revenue, how demand is distributed across meal periods, and whether average order value is consistent or varies by cuisine and time of day.",
@@ -180,9 +180,9 @@ print(classification_report(y_test, model.predict(X_test)))`,
       "Average order value sits at $27.05 across the period covered.",
     ],
     implication:
-      "Menu and staffing decisions are more reliable when cuisine-level and time-of-day patterns are visible in one place. An uncleaned category can distort totals.",
+      "Menu and staffing decisions are more reliable when cuisine-level and time-of-day patterns are visible in one place. Revenue concentration is not the same as profit contribution; costs would be needed for that assessment. An uncleaned category can distort totals.",
     recommendation:
-      "Prioritise high-revenue cuisine and meal-period combinations for menu prominence and staffing. Investigate and reclassify the Unknown category before the next reporting cycle. An interactive Power BI report is not yet published; the dashboard image and video are shown here.",
+      "Prioritise high-revenue cuisine and meal-period combinations for menu prominence and staffing. Investigate and reclassify the Unknown category before the next reporting cycle. Any claim that changes improved margin or reduced waste would require a before-and-after measurement that is not part of this project.",
     technical: [
       {
         language: "DAX",
