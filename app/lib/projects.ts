@@ -3,6 +3,12 @@ export interface ProjectLink {
   url: string;
 }
 
+export interface TechnicalBlock {
+  language: string;
+  title: string;
+  code: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -18,6 +24,7 @@ export interface Project {
   implication: string;
   recommendation: string;
   links: ProjectLink[];
+  technical?: TechnicalBlock[];
 }
 
 export const projects: Project[] = [
@@ -45,6 +52,26 @@ export const projects: Project[] = [
       "A risk flag is only useful if it arrives early enough to act on, and if the people who need it can actually use it.",
     recommendation:
       "Treat the score as a triage tool, not an automatic decision. Review high-risk cases and decide what intervention is worth testing. Model evaluation metrics from this build are not published here because they were not recorded in the project repository.",
+    technical: [
+      {
+        language: "Python",
+        title: "Logistic regression for readmission risk",
+        code: `from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+
+X = df[["age", "prior_visits", "glucose", "a1c", "meds", "los"]]
+y = df["readmitted"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+print(classification_report(y_test, model.predict(X_test)))`,
+      },
+    ],
     links: [
       { label: "Live app", url: "https://francisbright1-readmission-app-app-muqxfb.streamlit.app/" },
       { label: "GitHub", url: "https://github.com/FrancisBright1/readmission-app" },
@@ -156,6 +183,25 @@ export const projects: Project[] = [
       "Menu and staffing decisions are more reliable when cuisine-level and time-of-day patterns are visible in one place. An uncleaned category can distort totals.",
     recommendation:
       "Prioritise high-revenue cuisine and meal-period combinations for menu prominence and staffing. Investigate and reclassify the Unknown category before the next reporting cycle. An interactive Power BI report is not yet published; the dashboard image and video are shown here.",
+    technical: [
+      {
+        language: "DAX",
+        title: "Core measures used in the dashboard",
+        code: `Revenue = SUM(Orders[Amount])
+
+Orders Count = DISTINCTCOUNT(Orders[OrderID])
+
+Quantity = SUM(Orders[Qty])
+
+AOV = DIVIDE([Revenue], [Orders Count])
+
+Cuisine Revenue % =
+DIVIDE(
+  [Revenue],
+  CALCULATE([Revenue], ALL(Orders[Cuisine]))
+)`,
+      },
+    ],
     links: [
       { label: "View dashboard", url: "/project-menu-engineering.jpg" },
       { label: "Watch video", url: "/menu-engineering.mp4" },
