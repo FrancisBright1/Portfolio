@@ -73,6 +73,23 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               ))}
             </ul>
           </section>
+          {project.technical && project.technical.length > 0 && (
+            <section>
+              <h2 className="text-xs uppercase tracking-[0.16em] text-[#10b981] mb-3">Technical notes</h2>
+              <div className="space-y-6">
+                {project.technical.map((block) => (
+                  <div key={block.title}>
+                    <p className="text-sm text-[#a1a1aa] mb-2">
+                      {block.language} — {block.title}
+                    </p>
+                    <pre className="overflow-x-auto rounded-2xl bg-[#111114] border border-[#27272a] p-4 text-xs sm:text-sm text-[#d4d4d8] leading-relaxed">
+                      <code>{block.code}</code>
+                    </pre>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
           <section className="flex flex-wrap gap-3 pt-2">
             {project.links.map((link) => (
               <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm">
