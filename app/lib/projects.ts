@@ -207,6 +207,34 @@ DIVIDE(
       { label: "Watch video", url: "/menu-engineering.mp4" },
     ],
   },
+  {
+    slug: "excel-budgeting-tracker",
+    title: "Excel Budgeting Tracker",
+    subtitle: "A personal finance tool for tracking income, expenses, budgets and category-level spending",
+    category: "Business Analytics",
+    image: "/project-budgeting.jpg",
+    problem:
+      "When income and expenses are recorded across different sheets or informal notes, it becomes harder to monitor spending by category, compare expenses against a budget, and identify recurring costs.",
+    data:
+      "User-entered financial records containing dates, categories, amounts and notes. The workbook organises these entries to support summaries by category and reporting period.",
+    approach:
+      "Designed a structured Excel workbook using tables, formulas, category-based summaries and data validation to organise financial entries and support consistent tracking.",
+    tools: ["Microsoft Excel", "Excel Tables", "Formulas", "Data Validation", "Financial Reporting"],
+    analysed:
+      "The workbook supports analysis of spending distribution across categories, income and expense totals, and monthly spending against a defined budget.",
+    findings: [
+      "Structured financial records make it easier to filter transactions and summarise spending by category and period.",
+      "Category-level summaries help users identify where their money is going and which expenses may require closer review.",
+      "Comparing actual spending with planned budgets can help users identify budget overruns and monitor their financial goals.",
+    ],
+    implication:
+      "The tracker provides a consistent view of personal finances, helping users review spending patterns and make more informed budgeting decisions.",
+    recommendation:
+      "Record transactions consistently, review category totals regularly, and compare actual spending with planned budgets. Use the findings to identify recurring expenses and adjust future spending plans. The workbook is available for purchase on Selar.",
+    links: [
+      { label: "View on Selar", url: "https://selar.com/o873s67y48" },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
