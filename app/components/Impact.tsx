@@ -3,14 +3,14 @@
 import React from "react";
 
 const metrics = [
-  { value: "10+", label: "Interactive Dashboards Built", detail: "Power BI and Tableau reports for product, sales and leadership teams across Timi Tech and earlier roles." },
-  { value: "40%", label: "Reduction in Manual Reporting", detail: "From automating recurring extracts and refreshes with SQL and Python instead of rebuilding them by hand." },
+  { value: "10+", label: "Interactive Dashboards Built", detail: "Power BI and Tableau reports for product, sales and leadership teams. Count is from roles at Timi Tech and earlier positions." },
+  { value: "40%", label: "Reduction in Manual Reporting", detail: "Observed on recurring extract and refresh tasks after moving them from manual rebuilds to SQL and Python. Applies to the tasks measured, not all reporting." },
   { value: "100+", label: "Professionals Trained", detail: "SQL, Power BI and Python sessions for analysts and business colleagues, including FIRS officers in Uyo on data integrity and privacy." },
 ];
 
 const outcomes = [
   { title: "Interactive dashboards", text: "Built Power BI and Tableau reports that product, sales and leadership teams could use without a new request for every chart." },
-  { title: "Reporting workflows", text: "Automated recurring extracts and refreshes with SQL and Python so analysts spent less time on manual prep." },
+  { title: "Reporting workflows", text: "Automated recurring extracts and refreshes with SQL and Python so analysts spent less time on manual prep for those tasks." },
   { title: "Analysis on large files", text: "Prepared and modelled 100,000+ records for downstream reporting, including quality checks before the data reached a dashboard." },
   { title: "Analytics training", text: "Taught SQL, Python and Power BI sessions for analysts and business colleagues at Timi Tech Digital Consult." },
 ];
@@ -21,6 +21,9 @@ export default function Impact() {
       <div className="max-w-2xl mb-12">
         <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Impact</p>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">What the work produced</h2>
+        <p className="mt-4 text-[#a1a1aa] text-sm sm:text-base">
+          Figures below describe work that was measured or counted. They do not claim company-wide financial outcomes unless a specific before-and-after result is shown on a project page.
+        </p>
       </div>
 
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
