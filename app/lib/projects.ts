@@ -7,7 +7,7 @@ export interface Project {
   slug: string;
   title: string;
   subtitle: string;
-  category: "Retention" | "Segmentation" | "Data Preparation" | "Data Storytelling";
+  category: "Retention" | "Segmentation" | "Data Preparation" | "Data Storytelling" | "Business Analytics";
   image: string;
   problem: string;
   data: string;
