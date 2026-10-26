@@ -131,6 +131,35 @@ export const projects: Project[] = [
       { label: "GitHub", url: "https://github.com/FrancisBright1/Jamb-Performance-Analysis" },
     ],
   },
+  {
+    slug: "menu-engineering-dashboard",
+    title: "Menu Engineering & Demand Optimization",
+    subtitle: "Restaurant revenue, orders and cuisine performance for Q1 2023",
+    category: "Business Analytics",
+    image: "/project-menu-engineering.jpg",
+    problem:
+      "A multi-cuisine restaurant needed a clear view of which cuisines and meal periods drove revenue, orders and quantity sold so menu and staffing decisions could be based on actual demand rather than assumptions.",
+    data:
+      "Order-level data covering cuisine type (Italian, Asian, Mexican), meal period (Dinner, Lunch, Afternoon, Late), quantity sold, order count and revenue. Key metrics shown: $145.27K revenue, 5K orders, 12K quantity, $27.05 average order value.",
+    approach:
+      "Built a Power BI dashboard that surfaces revenue, order volume, quantity and average order value, then breaks performance by cuisine and meal period. Used visual comparisons to highlight where demand concentrates and where an Unknown category appears.",
+    tools: ["Power BI", "Data visualisation", "Business analysis"],
+    analysed:
+      "Which cuisines contribute most to revenue, how demand is distributed across meal periods, and whether average order value is consistent or varies by cuisine and time of day.",
+    findings: [
+      "Revenue is concentrated in specific cuisines and meal periods rather than spread evenly.",
+      "Dinner and Lunch periods show higher demand than Afternoon and Late periods.",
+      "An Unknown category appears in the data and should be cleaned before menu decisions are finalised.",
+      "Average order value sits at $27.05 across the period covered.",
+    ],
+    implication:
+      "Menu and staffing decisions are more reliable when cuisine-level and time-of-day patterns are visible in one place. An uncleaned category can distort totals.",
+    recommendation:
+      "Prioritise high-revenue cuisine and meal-period combinations for menu prominence and staffing. Investigate and reclassify the Unknown category before the next reporting cycle. An interactive Power BI report is not yet published; the dashboard image is shown here.",
+    links: [
+      { label: "View dashboard", url: "/project-menu-engineering.jpg" },
+    ],
+  },
 ];
 
 export function getProject(slug: string) {
