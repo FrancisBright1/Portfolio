@@ -3,9 +3,9 @@
 import React from "react";
 
 const metrics = [
-  { value: "10+", label: "Interactive Dashboards Built" },
-  { value: "40%", label: "Reduction in Manual Reporting" },
-  { value: "100+", label: "Professionals Trained" },
+  { value: "10+", label: "Interactive Dashboards Built", detail: "Power BI and Tableau reports for product, sales and leadership teams across Timi Tech and earlier roles." },
+  { value: "40%", label: "Reduction in Manual Reporting", detail: "From automating recurring extracts and refreshes with SQL and Python instead of rebuilding them by hand." },
+  { value: "100+", label: "Professionals Trained", detail: "SQL, Power BI and Python sessions for analysts and business colleagues, including FIRS officers in Uyo on data integrity and privacy." },
 ];
 
 const outcomes = [
@@ -27,7 +27,8 @@ export default function Impact() {
         {metrics.map((item) => (
           <div key={item.label} className="card rounded-2xl p-6 sm:p-8 text-center">
             <div className="text-4xl sm:text-5xl font-semibold tracking-tight text-[#10b981]">{item.value}</div>
-            <p className="mt-3 text-sm text-[#a1a1aa]">{item.label}</p>
+            <p className="mt-3 text-sm font-medium text-[#f4f4f5]">{item.label}</p>
+            <p className="mt-2 text-xs text-[#a1a1aa] leading-relaxed">{item.detail}</p>
           </div>
         ))}
       </div>
