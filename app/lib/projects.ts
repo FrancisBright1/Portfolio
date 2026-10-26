@@ -155,9 +155,10 @@ export const projects: Project[] = [
     implication:
       "Menu and staffing decisions are more reliable when cuisine-level and time-of-day patterns are visible in one place. An uncleaned category can distort totals.",
     recommendation:
-      "Prioritise high-revenue cuisine and meal-period combinations for menu prominence and staffing. Investigate and reclassify the Unknown category before the next reporting cycle. An interactive Power BI report is not yet published; the dashboard image is shown here.",
+      "Prioritise high-revenue cuisine and meal-period combinations for menu prominence and staffing. Investigate and reclassify the Unknown category before the next reporting cycle. An interactive Power BI report is not yet published; the dashboard image and video are shown here.",
     links: [
       { label: "View dashboard", url: "/project-menu-engineering.jpg" },
+      { label: "Watch video", url: "/menu-engineering.mp4" },
     ],
   },
 ];
