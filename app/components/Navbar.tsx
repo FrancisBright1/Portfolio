@@ -32,12 +32,16 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const top = element.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
     setIsOpen(false);
+
+    // Wait for the mobile menu to close before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const top = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }, 150);
   };
 
   return (
@@ -48,6 +52,7 @@ export default function Navbar() {
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
+            setIsOpen(false);
           }}
           className="flex items-center gap-3 group min-w-0"
         >
