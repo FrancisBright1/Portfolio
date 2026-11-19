@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Linkedin, Github, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Phone, ArrowRight } from "lucide-react";
 import { SITE } from "../lib/site";
 
 export default function Contact() {
@@ -56,6 +56,12 @@ export default function Contact() {
               <a href={`mailto:${SITE.email}`} className="flex items-center gap-4 group">
                 <span className="w-9 h-9 rounded-xl border border-[#27272a] flex items-center justify-center group-hover:border-[#10b981]"><Mail className="w-4 h-4" aria-hidden /></span>
                 <span className="group-hover:text-[#10b981] break-all">{SITE.email}</span>
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="flex items-center gap-4 group">
+                <span className="w-9 h-9 rounded-xl border border-[#27272a] flex items-center justify-center group-hover:border-[#10b981]"><Phone className="w-4 h-4" aria-hidden /></span>
+                <span className="group-hover:text-[#10b981]">{SITE.phone}</span>
               </a>
             </li>
             <li>
