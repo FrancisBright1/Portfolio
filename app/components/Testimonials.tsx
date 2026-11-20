@@ -14,9 +14,6 @@ export default function Testimonials() {
       <div className="max-w-2xl mb-12">
         <p className="uppercase tracking-[0.18em] text-xs text-[#10b981] font-medium mb-3">Working style</p>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">What you can expect</h2>
-        <p className="mt-4 text-[#a1a1aa] text-sm sm:text-base">
-          Named testimonials are not shown here. The quotes previously on this page could not be verified with a public profile, so they have been removed.
-        </p>
       </div>
       <div className="grid md:grid-cols-3 gap-4">
         {points.map((item) => (
